@@ -25,6 +25,7 @@ class unbound::remote (
   exec { 'unbound-control-setup':
     command => "unbound-control-setup -d ${confdir}",
     creates => $server_key_file,
+    path    => ['/sbin', '/usr/sbin', '/bin', '/usr/bin']
   } ->
   file { [ $server_key_file, $server_cert_file, $control_key_file, $control_cert_file ]:
     owner => 'root',
